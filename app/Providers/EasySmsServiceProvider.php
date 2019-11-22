@@ -16,6 +16,11 @@ class EasySmsServiceProvider extends ServiceProvider
     public function register()
     {
         //
+        $this->app->singleton(EasySms::class , function(){
+            return new EasySms(config('easysms'));
+        });
+        $this->app->alias(EasySms::class , 'easysms');
+
     }
 
     /**
@@ -25,10 +30,6 @@ class EasySmsServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->app->singleton('easysms',function(){
-
-            return new EasySms(config('easysms'));
-        });
         //
     }
 }

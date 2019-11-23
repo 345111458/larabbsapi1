@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -10,7 +11,8 @@ use Auth;
 use Spatie\Permission\Traits\HasRoles;
 
 
-class User extends Authenticatable implements MustVerifyEmailContract
+
+class User extends Authenticatable implements MustVerifyEmailContract, JWTSubject
 {
     use HasRoles;
     use MustVerifyEmailTrait;
@@ -34,6 +36,19 @@ class User extends Authenticatable implements MustVerifyEmailContract
 
         $this->laravelNotify($instance);
     }
+
+
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
+
+
 
     protected $fillable = [
         'name', 'phone', 'email', 'password', 'introduction', 'avatar',

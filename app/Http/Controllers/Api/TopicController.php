@@ -34,7 +34,7 @@ class TopicController extends Controller
         $this->authorize('update',$topic);
 
         $topic->delete();
-        return new response($topic,203);
+        return response(null,204);
     }
     //
 }

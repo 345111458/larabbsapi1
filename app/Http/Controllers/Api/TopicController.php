@@ -20,5 +20,21 @@ class TopicController extends Controller
 
         return new TopicResource($topic);
     }
+
+    // 修改话题
+    public function update(TopicRequest $request,Topic $topic){
+        $this->authorize('update',$topic);
+
+        $topic->update($request->all());
+        return new TopicResource($topic);
+    }
+
+    // 删除话题
+    public function destroy(Topic $topic){
+        $this->authorize('update',$topic);
+
+        $topic->delete();
+        return new response($topic,203);
+    }
     //
 }

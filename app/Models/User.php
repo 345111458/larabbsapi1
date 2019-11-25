@@ -12,7 +12,7 @@ use Spatie\Permission\Traits\HasRoles;
 
 
 
-class User extends Authenticatable implements MustVerifyEmailContract, JWTSubject
+class User extends Authenticatable implements MustVerifyEmailContract,JWTSubject
 {
     use HasRoles;
     use MustVerifyEmailTrait;

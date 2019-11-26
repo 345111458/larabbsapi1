@@ -23,7 +23,6 @@ class ReplyResource extends JsonResource
             'updated_at'=>  $this->updated_at,
             'user'      =>  new UserResource($this->whenLoaded('user')),
             'topic'     =>  new TopicResource($this->whenLoaded('topic')),
-            'topic'     =>  new TopicResource(['id'=>$this->topic->id]),
         ];
         return parent::toArray($request);
     }

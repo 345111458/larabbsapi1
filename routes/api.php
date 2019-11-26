@@ -73,7 +73,8 @@ Route::prefix('v1')->namespace('Api')->name('api.v1.')->group(function () {
             Route::post('topics/{topic}/replies','ReplyController@store')->name('topics.replies.store');
             // 删除回复
             Route::delete('topics/{topic}/replies/{reply}', 'ReplyController@destroy')->name('topics.replies.destroy');
-
+            // 通知列表
+            Route::get('notifications', 'NotificationController@index')->name('notifications.index');
 
 
 

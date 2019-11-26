@@ -51,7 +51,10 @@ Route::prefix('v1')->namespace('Api')->name('api.v1.')->group(function () {
         Route::get('topics/{topic}/replies', 'ReplyController@index')->name('topics.replies.index');
         // 某个用户的回复列表
         Route::get('users/{user}/replies', 'ReplyController@userIndex')->name('users.replies.index');
-
+        // 资源推荐
+        Route::get('links', 'LinksController@index')->name('links.index');
+        // 活跃用户
+        Route::get('actived/users', 'UsersController@activedIndex')->name('actived.users.index');
 
 
 
@@ -81,8 +84,7 @@ Route::prefix('v1')->namespace('Api')->name('api.v1.')->group(function () {
             Route::patch('user/read/notifications', 'NotificationController@read')->name('user.notifications.read');
             // 当前登录用户权限
             Route::get('user/permissions', 'PermissionsController@index')->name('user.permissions.index');
-            // 资源推荐
-            Route::get('links', 'LinksController@index')->name('links.index');
+
 
 
 

@@ -4,9 +4,29 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Str;
+
+
 
 class Handler extends ExceptionHandler
 {
+
+    protected function convertExceptionToArray(Exception $e){
+        return config('app.debug') ? [
+            'message'   =>  $e->getMessage(),
+            'code'      =>  $e->getCode(),
+            'exception' =>  $e->get_class($e),
+            'file'      =>  $e->getFile(),
+            'line'      =>  $e->getLine(),
+            'trace'     =>  collect($e->getTrace())->map(function($trace){
+                return Atr::except($trace,['args']);
+            })->all(),
+        ]:[
+            'message'   =>  $this->isHttpException($e) ? $e->getMessage() : 'Server Error',
+        ];
+    }
+
+
     /**
      * A list of the exception types that are not reported.
      *

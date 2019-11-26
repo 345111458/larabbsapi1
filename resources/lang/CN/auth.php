@@ -14,7 +14,7 @@ return [
     */
 
     'failed' => 'These credentials do not match our records.',
-    'wss'    => 'wo shi shui ,zai zhe li gan sheng mo?',
+    'wss'    => '我是谁，我在干什么?',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
 
 ];
